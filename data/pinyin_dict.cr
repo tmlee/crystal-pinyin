@@ -1,4 +1,4 @@
-module PinyinData
+module PinyinDict
   DATA = {
     "\u3007" =>  "líng",
     "\u3400" =>  "qiū",

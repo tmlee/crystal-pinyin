@@ -1,3 +1,3 @@
 require "./src/*"
 
-Pinyin.say_hi
+Pinyin.say("中心", style: Pinyin::Tone)
