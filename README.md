@@ -15,7 +15,7 @@ TODO: Write usage instructions here (After command line is implemented)
 ## Development
 
 To Be Implemented
-- [ ] Executable Pinyin via command line
+- [/] Executable Pinyin via command line
 - [ ] 0, 普通风格，不带声调（默认风格）。如： zhong guo
 - [ ] 3, 声母风格，只返回各个拼音的声母部分。如： zh g
 - [ ] 4, 首字母风格，只返回拼音的首字母部分。如： z g
@@ -25,6 +25,7 @@ To Be Implemented
 - [ ] 9, 韵母风格3，带声调，声调在各个拼音之后，用数字 [1-4] 进行表示。如： ong1 uo2
 - [ ] Code Optimization
 - [ ] Import/Sync 汉语字典
+- [ ] Command line error handling
 
 ## Contributing
 

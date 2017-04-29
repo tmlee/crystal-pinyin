@@ -6,7 +6,7 @@ describe Pinyin do
   	Pinyin.say("中心", style: Pinyin::Tone, heteronym: true).should eq [["zhōng", "zhòng"],["xīn"]]
   end
 
-  it "prints tone accent" do
+  it "prints tone2 accent" do
   	Pinyin.say("中心", style: Pinyin::Tone2).should eq [["zho1ng"],["xi1n"]]
   	Pinyin.say("中心", style: Pinyin::Tone2, heteronym: true).should eq [["zho1ng", "zho4ng"],["xi1n"]]
   end
