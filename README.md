@@ -6,16 +6,29 @@ Chinese Character Pinyin Conversion Tool written in Crystal Language
 
 ## Installation
 
-TODO: Write installation instructions here
+```
+  git clone git@github.com:tmlee/crystal-pinyin.git
+```
+
+```
+  cd /path/to/crystal-pinyin
+  ./bin/pinyin 中国
+  >> zhōng guó
+```
+
+TODO: Install as a Shard
 
 ## Usage
 
-TODO: Write usage instructions here (After command line is implemented)
+```
+  ./bin/pinyin 中国
+  >> zhōng guó
+```
 
 ## Development
 
 To Be Implemented
-- [/] Executable Pinyin via command line
+- [x] Executable Pinyin via command line
 - [ ] 0, 普通风格，不带声调（默认风格）。如： zhong guo
 - [ ] 3, 声母风格，只返回各个拼音的声母部分。如： zh g
 - [ ] 4, 首字母风格，只返回拼音的首字母部分。如： z g
@@ -26,6 +39,7 @@ To Be Implemented
 - [ ] Code Optimization
 - [ ] Import/Sync 汉语字典
 - [ ] Command line error handling
+- [ ] Travis CI
 
 ## Contributing
 
