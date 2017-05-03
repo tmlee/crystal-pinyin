@@ -41,7 +41,7 @@ To Be Implemented
 - [ ] Code Optimization
 - [ ] Import/Sync 汉语字典
 - [x] Command line error handling
-- [ ] Travis CI
+- [x] Travis CI
 
 ## Contributing
 
