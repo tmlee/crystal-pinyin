@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/tmlee/crystal-pinyin.svg)](https://travis-ci.org/tmlee/crystal-pinyin)
+
 # pinyin
 
 Chinese Character Pinyin Conversion Tool written in Crystal Language
