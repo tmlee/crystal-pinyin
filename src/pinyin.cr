@@ -24,7 +24,11 @@ module Pinyin
   def self.say(words, style, heteronym=nil)
     output = Array(Array(String)).new()
     words.each_char do |char|
-      char_pinyins = PINYIN_DICT[char.to_s].split(',')
+      begin
+        char_pinyins = PINYIN_DICT[char.to_s].split(',')
+      rescue KeyError
+        next
+      end
 
       case heteronym
       when true

@@ -20,4 +20,24 @@ describe Pinyin::CLI do
      cmd.output.gets_to_end.should eq "zho1ng,zho4ng xi1n\n"
     end
   end
+
+  it "ignores characters that's not in the dictionary" do
+    Process.run("./bin/pinyin", ["aaa", "-s", "TONE2"]) do |cmd|
+     cmd.output.gets_to_end.should eq "\n"
+    end
+
+    Process.run("./bin/pinyin", ["中a中"]) do |cmd|
+     cmd.output.gets_to_end.should eq "zhōng zhōng\n"
+    end
+
+    Process.run("./bin/pinyin", ["中a中", "-h"]) do |cmd|
+     cmd.output.gets_to_end.should eq "zhōng,zhòng zhōng,zhòng\n"
+    end
+  end
+
+  it "handles invalid option flags" do
+    Process.run("./bin/pinyin", ["中心", "-invalid"]) do |cmd|
+     cmd.output.gets_to_end.should contain "Invalid option: -invalid"
+    end
+  end
 end

@@ -6,21 +6,27 @@ module Pinyin
       heteronym = false
       output_style = nil
 
-      OptionParser.parse! do |parser|
-        parser.banner = instruction
-        parser.on("-h", "--heteronym", "output heteronym pinyins") { heteronym = true }
-        parser.on("-s STYLE", "--style=STYLE", "pinyin styles") do |style|
-          case style
-          when "TONE2"
-            output_style = Pinyin::Tone2
-          else
-            output_style = Pinyin::Tone
+      begin
+        OptionParser.parse! do |parser|
+          parser.banner = instruction
+          parser.on("-h", "--heteronym", "output heteronym pinyins") { heteronym = true }
+          parser.on("-s STYLE", "--style=STYLE", "pinyin styles") do |style|
+            case style
+            when "TONE2"
+              output_style = Pinyin::Tone2
+            else
+              output_style = Pinyin::Tone
+            end
+          end
+          parser.on("-h", "--help", "output usage information") do
+            puts instruction
+            exit 0
           end
         end
-        parser.on("-h", "--help", "output usage information") do
-          puts instruction
-          exit 0
-        end
+      rescue e : OptionParser::InvalidOption
+        puts "#{e.to_s}\n\n"
+        puts instruction
+        exit 0
       end
 
       if options.empty?
@@ -40,13 +46,15 @@ module Pinyin
     def instruction
       <<-INSTRUCTION
         Usage: pinyin [options] 汉字,
-        
+
         Options:
 
         -h, --help                   output usage information
         -V, --version                output the version number
         -s, --style <style>          pinyin styles: [NORMAL,TONE,TONE2]
         -h, --heteronym              output heteronym pinyins
+
+
 
       INSTRUCTION
     end

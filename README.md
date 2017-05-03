@@ -38,7 +38,7 @@ To Be Implemented
 - [ ] 9, 韵母风格3，带声调，声调在各个拼音之后，用数字 [1-4] 进行表示。如： ong1 uo2
 - [ ] Code Optimization
 - [ ] Import/Sync 汉语字典
-- [ ] Command line error handling
+- [x] Command line error handling
 - [ ] Travis CI
 
 ## Contributing
