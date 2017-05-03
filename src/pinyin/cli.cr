@@ -12,6 +12,8 @@ module Pinyin
           parser.on("-h", "--heteronym", "output heteronym pinyins") { heteronym = true }
           parser.on("-s STYLE", "--style=STYLE", "pinyin styles") do |style|
             case style
+            when "NORMAL"
+              output_style = Pinyin::Normal
             when "TONE2"
               output_style = Pinyin::Tone2
             else

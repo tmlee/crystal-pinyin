@@ -1,6 +1,16 @@
 require "./spec_helper"
 
 describe Pinyin::CLI do
+  it "prints normal accent" do
+    Process.run("./bin/pinyin", ["中心", "-s", "NORMAL"]) do |cmd|
+     cmd.output.gets_to_end.should eq "zhong xin\n"
+    end
+
+    Process.run("./bin/pinyin", ["中心", "-s", "NORMAL", "-h"]) do |cmd|
+     cmd.output.gets_to_end.should eq "zhong,zhong xin\n"
+    end
+  end
+
   it "prints tone accent" do
     Process.run("./bin/pinyin", ["中心"]) do |cmd|
      cmd.output.gets_to_end.should eq "zhōng xīn\n"

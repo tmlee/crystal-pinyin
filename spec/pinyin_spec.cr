@@ -1,6 +1,11 @@
 require "./spec_helper"
 
 describe Pinyin do
+  it "prints normal accent" do
+    Pinyin.say("中心", style: Pinyin::Normal).should eq [["zhong"],["xin"]]
+    Pinyin.say("中心", style: Pinyin::Normal, heteronym: true).should eq [["zhong", "zhong"],["xin"]]
+  end
+
   it "prints tone accent" do
   	Pinyin.say("中心", style: Pinyin::Tone).should eq [["zhōng"],["xīn"]]
   	Pinyin.say("中心", style: Pinyin::Tone, heteronym: true).should eq [["zhōng", "zhòng"],["xīn"]]

@@ -31,7 +31,7 @@ TODO: Install as a Shard
 
 To Be Implemented
 - [x] Executable Pinyin via command line
-- [ ] 0, 普通风格，不带声调（默认风格）。如： zhong guo
+- [x] 0, 普通风格，不带声调（默认风格）。如： zhong guo
 - [ ] 3, 声母风格，只返回各个拼音的声母部分。如： zh g
 - [ ] 4, 首字母风格，只返回拼音的首字母部分。如： z g
 - [ ] 5, 韵母风格，只返回各个拼音的韵母部分，不带声调。如： ong uo
