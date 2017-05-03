@@ -1,1 +1,6 @@
 language: crystal
+script:
+  crystal deps
+  make
+  crystal spec
+
