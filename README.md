@@ -41,6 +41,7 @@ To Be Implemented
 - [ ] Refactor parsing code into functions
 - [ ] Code Optimization
 - [ ] Import/Sync 汉语字典
+- [ ] Add crystal docs
 - [x] Command line error handling
 - [x] Travis CI
 

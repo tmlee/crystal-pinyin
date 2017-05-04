@@ -23,58 +23,38 @@ module Pinyin
   def self.say(words, style, heteronym=nil)
     output = Array(Array(String)).new()
     words.each_char do |char|
-      begin
-        char_pinyins = PINYIN_DICT[char.to_s].split(',')
-      rescue KeyError
-        next
-      end
+      char_pinyins = self.single_pinyin(char.to_s)
+      next unless char_pinyins
+      char_pinyins = char_pinyins[0,1] unless heteronym
+      output << self.stylize(char_pinyins, style)
+    end
+    output
+  end
 
-      case heteronym
-      when true
-        output << char_pinyins
-      else
-        output << char_pinyins[0,1]
-      end
-
+  protected def self.stylize(char_pinyins, style)
+    char_pinyins.map_with_index do |char_pinyin, index|
       case style
       when Pinyin::Normal
-        output.map do |char_pinyins|
-          char_pinyins.map_with_index do |char_pinyin, index|
-            md = char_pinyin.match(Pinyin::RE_PHONETIC_SYMBOLS)
-            if md
-              char_pinyins[index] = char_pinyin.gsub Pinyin::RE_PHONETIC_SYMBOLS, Pinyin::PHONETIC_SYMBOLS[md[0]]
-            end
-          end
-
-          char_pinyins.map_with_index do |char_pinyin, index|
-            md = Pinyin::RE_TONE2.match(char_pinyin).try(&.[1])
-            if md
-              char_pinyins[index] = char_pinyin.gsub Pinyin::RE_TONE2, md
-            end
-          end
-        end
+        md = char_pinyin.match(Pinyin::RE_PHONETIC_SYMBOLS)
+        char_pinyins[index] = char_pinyin.gsub Pinyin::RE_PHONETIC_SYMBOLS, Pinyin::PHONETIC_SYMBOLS[md[0]] if md
+        md = Pinyin::RE_TONE2.match(char_pinyin).try(&.[1])
+        char_pinyins[index] = char_pinyin.gsub Pinyin::RE_TONE2, md if md
       when Pinyin::Initials
-        output.map do |char_pinyins|
-          char_pinyins.map_with_index do |char_pinyin, index|
-              Pinyin::INITIALS.map do |initial|
-                if char_pinyin.starts_with?(initial)
-                  char_pinyins[index] = initial
-                  break
-                end
-              end
+        Pinyin::INITIALS.map do |initial|
+          if char_pinyin.starts_with?(initial)
+            char_pinyins[index] = initial
+            break
           end
         end
       when Pinyin::Tone2
-        output.map do |char_pinyins|
-          char_pinyins.map_with_index do |char_pinyin, index|
-            md = char_pinyin.match(Pinyin::RE_PHONETIC_SYMBOLS)
-            if md
-              char_pinyins[index] = char_pinyin.gsub Pinyin::RE_PHONETIC_SYMBOLS, Pinyin::PHONETIC_SYMBOLS[md[0]]
-            end
-          end
-        end
-      end
+        md = char_pinyin.match(Pinyin::RE_PHONETIC_SYMBOLS)
+        char_pinyins[index] = char_pinyin.gsub Pinyin::RE_PHONETIC_SYMBOLS, Pinyin::PHONETIC_SYMBOLS[md[0]] if md
+      end      
     end
-    output
+    char_pinyins
+  end
+
+  protected def self.single_pinyin(chinese_char)
+    PINYIN_DICT[chinese_char].split(',') if PINYIN_DICT.has_key? chinese_char
   end
 end
