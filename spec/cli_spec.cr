@@ -31,6 +31,16 @@ describe Pinyin::CLI do
     end
   end
 
+  it "prints initials accent" do
+    Process.run("./bin/pinyin", ["中心", "-s", "INITIALS"]) do |cmd|
+     cmd.output.gets_to_end.should eq "zh x\n"
+    end
+
+    Process.run("./bin/pinyin", ["中心", "-s", "INITIALS", "-h"]) do |cmd|
+     cmd.output.gets_to_end.should eq "zh,zh x\n"
+    end
+  end
+
   it "ignores characters that's not in the dictionary" do
     Process.run("./bin/pinyin", ["aaa", "-s", "TONE2"]) do |cmd|
      cmd.output.gets_to_end.should eq "\n"

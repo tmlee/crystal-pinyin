@@ -16,6 +16,8 @@ module Pinyin
               output_style = Pinyin::Normal
             when "TONE2"
               output_style = Pinyin::Tone2
+            when "INITIALS"
+              output_style = Pinyin::Initials
             else
               output_style = Pinyin::Tone
             end
@@ -33,7 +35,7 @@ module Pinyin
 
       if options.empty?
         puts instruction
-        return 
+        return
       else
         words = options.first
         results = Pinyin.say(words, style: output_style, heteronym: heteronym)
@@ -53,7 +55,7 @@ module Pinyin
 
         -h, --help                   output usage information
         -V, --version                output the version number
-        -s, --style <style>          pinyin styles: [NORMAL,TONE,TONE2]
+        -s, --style <style>          pinyin styles: [NORMAL,TONE,TONE2,INITIALS]
         -h, --heteronym              output heteronym pinyins
 
 
